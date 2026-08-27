@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoxAuthentic | Voice Authenticator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-effects">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+        <div class="glow-orb orb-3"></div>
+    </div>
+
+    <div class="app-container">
+        <header>
+            <h1>Vox<span>Authentic</span></h1>
+            <p>Advanced AI Deepfake Voice Detection</p>
+        </header>
+
+        <section class="config-section glass-panel">
+            <div class="input-group">
+                <label for="apiUrl">API Server URL</label>
+                <div class="input-wrapper">
+                    <span class="icon">🔗</span>
+                    <input type="text" id="apiUrl" value="https://eggshell-api-tusar.loca.lt" placeholder="e.g., http://192.168.1.10:8000">
+                </div>
+                <small>Point this to the machine running the VoxAuthentic API.</small>
+            </div>
+            
+            <div class="input-group" style="margin-top: 1rem;">
+                <label for="apiKey">API Key</label>
+                <div class="input-wrapper">
+                    <span class="icon">🔑</span>
+                    <input type="password" id="apiKey" value="egg-shell-2026" placeholder="Enter your secret API key">
+                </div>
+            </div>
+
+            <div id="connectionStatus" class="status-indicator"></div>
+        </section>
+
+        <section class="upload-section glass-panel" id="dropZone">
+            <div class="upload-content">
+                <div class="upload-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+                    </svg>
+                </div>
+                <h2>Upload Audio</h2>
+                <p>Drag & Drop or <span class="browse-btn">Browse Files</span></p>
+                <small class="formats">Supports: WAV, MP3, FLAC, OGG, M4A, WEBM</small>
+                <input type="file" id="fileInput" accept=".wav,.mp3,.flac,.ogg,.m4a,.webm" hidden>
+            </div>
+            
+            <div class="uploading-state hidden" id="loadingState">
+                <div class="spinner"></div>
+                <p>Analyzing Acoustic Features...</p>
+            </div>
+        </section>
+
+        <section class="results-section hidden" id="resultsSection">
+            <div class="verdict-card glass-panel" id="verdictCard">
+                <h3 class="label-title">Verdict</h3>
+                <div class="verdict-main" id="verdictText">REAL</div>
+                
+                <div class="confidence-container">
+                    <div class="confidence-header">
+                        <span>Confidence</span>
+                        <span id="confidenceValue">95.0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="confidenceFill"></div>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <span class="stat-label">Real Prob</span>
+                        <span class="stat-value" id="probReal">0%</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">Fake Prob</span>
+                        <span class="stat-value" id="probFake">0%</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-label">Duration</span>
+                        <span class="stat-value" id="duration">0s</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="spectrogram-card glass-panel">
+                <h3 class="label-title">Mel-Spectrogram</h3>
+                <p class="desc">Visual representation of frequencies over time.</p>
+                <div class="image-container">
+                    <img id="spectrogramImg" src="" alt="Audio Spectrogram">
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
