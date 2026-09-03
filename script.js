@@ -28,7 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const res = await fetch(`${url}/api/health`, {
                 headers: { 
                     'Bypass-Tunnel-Reminder': 'true',
-                    'X-API-Key': apiKeyInput.value.trim()
+                    'X-API-Key': apiKeyInput.value.trim(),
+                    'ngrok-skip-browser-warning': 'true'
                 }
             });
             if (res.ok) {
@@ -97,7 +98,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 method: 'POST',
                 headers: { 
                     'Bypass-Tunnel-Reminder': 'true',
-                    'X-API-Key': apiKey
+                    'X-API-Key': apiKey,
+                    'ngrok-skip-browser-warning': 'true'
                 },
                 body: formData
             });
